@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KP Englisch – GSS Leutkirch</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #222636;
+    --border: #2e3248;
+    --accent: #5b8dee;
+    --accent2: #7c5cbf;
+    --green: #3ecf8e;
+    --yellow: #f5c842;
+    --red: #e05555;
+    --text: #e8eaf0;
+    --muted: #8b90a4;
+    --card-shadow: 0 4px 24px rgba(0,0,0,0.35);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15,17,23,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    overflow-x: auto;
+    height: 52px;
+  }
+  nav a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 6px;
+    white-space: nowrap;
+    transition: all 0.2s;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+  nav a:hover { color: var(--text); background: var(--surface2); }
+  nav .logo { color: var(--accent); font-size: 0.9rem; font-weight: 700; margin-right: 12px; white-space: nowrap; }
+
+  /* LAYOUT */
+  .page { max-width: 860px; margin: 0 auto; padding: 40px 20px 80px; }
+
+  /* HERO */
+  .hero {
+    text-align: center;
+    padding: 60px 20px 50px;
+    background: linear-gradient(160deg, var(--surface) 0%, var(--bg) 100%);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0;
+  }
+  .hero h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.02em; }
+  .hero h1 span { color: var(--accent); }
+  .hero p { color: var(--muted); margin-top: 8px; font-size: 0.95rem; }
+  .hero .badges { display: flex; gap: 10px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+  .badge {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+  .badge.accent { border-color: var(--accent); color: var(--accent); }
+
+  /* SECTION HEADER */
+  .section { padding: 50px 0 0; }
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-size: 1.7rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+  }
+  .section-desc { color: var(--muted); font-size: 0.92rem; margin-bottom: 28px; }
+
+  /* CARDS */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 14px;
+    box-shadow: var(--card-shadow);
+  }
+  .card-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  /* EXAM FLOW TABLE */
+  .flow-table { width: 100%; border-collapse: collapse; }
+  .flow-table th {
+    text-align: left;
+    padding: 10px 14px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+  }
+  .flow-table td { padding: 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .flow-table tr:last-child td { border-bottom: none; }
+  .seq-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px; height: 28px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+  .seq-num.s2 { background: var(--accent2); }
+  .seq-num.s3 { background: var(--green); color: #111; }
+  .flow-title { font-weight: 700; margin-bottom: 2px; }
+  .flow-sub { font-size: 0.85rem; color: var(--muted); }
+  .time-badge {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 3px 10px;
+    font-size: 0.78rem;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  /* ACCORDION (warm-up topics) */
+  .accordion { margin-bottom: 8px; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
+  .accordion-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    background: var(--surface);
+    cursor: pointer;
+    user-select: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: background 0.2s;
+  }
+  .accordion-header:hover { background: var(--surface2); }
+  .accordion-header .arrow {
+    font-size: 0.7rem;
+    color: var(--muted);
+    transition: transform 0.25s;
+  }
+  .accordion.open .accordion-header .arrow { transform: rotate(180deg); }
+  .accordion-body {
+    display: none;
+    padding: 0 18px 18px;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+  }
+  .accordion.open .accordion-body { display: block; }
+
+  .questions-list { margin: 12px 0 16px; }
+  .questions-list li {
+    padding: 5px 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+    list-style: none;
+    padding-left: 16px;
+    position: relative;
+  }
+  .questions-list li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
+
+  .reveal-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    margin-top: 4px;
+  }
+  .reveal-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .reveal-content {
+    display: none;
+    margin-top: 12px;
+    background: var(--surface2);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 16px;
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+  .reveal-content.visible { display: block; }
+  .reveal-content .highlight { color: var(--accent); font-weight: 600; }
+  .reveal-content .note { color: var(--muted); font-size: 0.82rem; margin-top: 8px; font-style: italic; }
+
+  /* PHRASE GRID */
+  .phrase-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 12px 0; }
+  @media(max-width: 600px) { .phrase-grid { grid-template-columns: 1fr; } }
+  .phrase-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 0.88rem;
+  }
+  .phrase-card .phrase-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 5px;
+  }
+  .phrase-card em { color: var(--accent); font-style: italic; }
+  .phrase-card.green { border-left: 3px solid var(--green); }
+  .phrase-card.yellow { border-left: 3px solid var(--yellow); }
+  .phrase-card.purple { border-left: 3px solid var(--accent2); }
+  .phrase-card.red { border-left: 3px solid var(--red); }
+
+  /* STRUCTURE STEPS */
+  .steps { margin: 14px 0; }
+  .step {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 12px;
+    align-items: flex-start;
+  }
+  .step-num {
+    width: 28px; height: 28px;
+    background: var(--accent);
+    color: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .step-content { flex: 1; }
+  .step-content .phrase { color: var(--accent); font-style: italic; font-size: 0.9rem; margin-top: 3px; }
+  .step-content .label { font-weight: 700; font-size: 0.9rem; }
+  .step-content .sub { color: var(--muted); font-size: 0.85rem; }
+
+  /* FLASH CARDS */
+  .flashcard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  @media(max-width: 600px) { .flashcard-grid { grid-template-columns: 1fr; } }
+  .flashcard {
+    perspective: 800px;
+    height: 110px;
+    cursor: pointer;
+  }
+  .flashcard-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+  }
+  .flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
+  .flashcard-front, .flashcard-back {
+    position: absolute;
+    width: 100%; height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 14px;
+    text-align: center;
+    font-size: 0.85rem;
+    border: 1px solid var(--border);
+  }
+  .flashcard-front {
+    background: var(--surface);
+    color: var(--text);
+  }
+  .flashcard-front .fc-hint { font-size: 0.7rem; color: var(--muted); margin-top: 6px; }
+  .flashcard-back {
+    background: var(--accent);
+    color: white;
+    transform: rotateY(180deg);
+    font-style: italic;
+    font-weight: 600;
+    font-size: 0.82rem;
+  }
+
+  /* MISTAKE TABLE */
+  .mistake-table { width: 100%; border-collapse: collapse; }
+  .mistake-table th {
+    padding: 10px 14px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+  }
+  .mistake-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); font-size: 0.9rem; vertical-align: top; }
+  .mistake-table tr:last-child td { border-bottom: none; }
+  .bad { color: var(--red); font-weight: 600; }
+  .good { color: var(--green); font-weight: 600; }
+
+  /* MOCK TASKS */
+  .mock-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .mock-header {
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    padding: 14px 20px;
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+  .mock-body { padding: 20px; }
+  .mock-section { margin-bottom: 16px; }
+  .mock-section:last-child { margin-bottom: 0; }
+  .mock-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .quote-box {
+    background: var(--surface2);
+    border-left: 3px solid var(--yellow);
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+    color: var(--yellow);
+    font-size: 0.9rem;
+  }
+  .example-answer {
+    display: none;
+    background: var(--surface2);
+    border-left: 3px solid var(--green);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 16px;
+    font-size: 0.88rem;
+    line-height: 1.75;
+    margin-top: 10px;
+  }
+  .example-answer.visible { display: block; }
+  .example-answer .phrase { color: var(--green); font-weight: 600; }
+  .example-answer .note { color: var(--muted); font-size: 0.8rem; margin-top: 8px; border-top: 1px solid var(--border); padding-top: 8px; }
+  .ideas-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .idea-tag {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  /* CHECKLIST */
+  .checklist { list-style: none; }
+  .checklist li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.92rem;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.2s;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li .cb {
+    width: 20px; height: 20px;
+    border: 2px solid var(--border);
+    border-radius: 5px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s;
+    font-size: 0.75rem;
+  }
+  .checklist li.checked .cb { background: var(--green); border-color: var(--green); }
+  .checklist li.checked { color: var(--muted); text-decoration: line-through; }
+
+  /* PLAN */
+  .plan-row {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .plan-row:last-child { border-bottom: none; }
+  .plan-time {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--accent);
+    white-space: nowrap;
+    width: 80px;
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+  .plan-content .plan-title { font-weight: 700; font-size: 0.92rem; }
+  .plan-content .plan-desc { color: var(--muted); font-size: 0.84rem; margin-top: 2px; }
+
+  /* DIVIDER */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 30px 0; }
+
+  /* TIPS BOX */
+  .tip-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 18px;
+    font-size: 0.88rem;
+    color: var(--muted);
+    margin: 16px 0;
+  }
+  .tip-box strong { color: var(--yellow); }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.82rem;
+    padding: 40px 20px;
+    border-top: 1px solid var(--border);
+    margin-top: 60px;
+  }
+
+  /* PROGRESS BAR */
+  .progress-wrap { background: var(--surface2); border-radius: 10px; height: 6px; margin: 6px 0 16px; overflow: hidden; }
+  .progress-bar { height: 100%; background: var(--accent); border-radius: 10px; transition: width 0.4s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="logo">KP Englisch</span>
+  <a href="#ablauf">Ablauf</a>
+  <a href="#warmup">Warm-up</a>
+  <a href="#monologue">Monologue</a>
+  <a href="#dialogue">Dialogue</a>
+  <a href="#mocks">Mock Tasks</a>
+  <a href="#flashcards">Flashcards</a>
+  <a href="#plan">Plan</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Kommunikationsprüfung <span>Englisch</span></h1>
+  <p>GSS Leutkirch · 2BFS Profil Elektro · Alles was du wirklich brauchst</p>
+  <div class="badges">
+    <span class="badge accent">3 Sequenzen</span>
+    <span class="badge">~25 Min Prüfung</span>
+    <span class="badge">Interaktiv lernen</span>
+    <span class="badge">Beispielantworten per Klick</span>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- ========== ABLAUF ========== -->
+<section class="section" id="ablauf">
+  <div class="section-label">Überblick</div>
+  <div class="section-title">Prüfungsablauf</div>
+  <div class="section-desc">3 Sequenzen – kenne die Struktur auswendig, damit du nie den Faden verlierst.</div>
+
+  <div class="card">
+    <table class="flow-table">
+      <tr>
+        <th width="40"></th>
+        <th>Sequenz</th>
+        <th>Inhalt</th>
+        <th width="80">Zeit</th>
+      </tr>
+      <tr>
+        <td><span class="seq-num">1</span></td>
+        <td>
+          <div class="flow-title">Warm-up</div>
+          <div class="flow-sub">Persönliche Fragen zu Alltags-Topics</div>
+        </td>
+        <td style="font-size:0.88rem; color:var(--muted)">Movies · Travel · Money · Sport · Mobile · Work · Family · Food</td>
+        <td><span class="time-badge">~5 Min</span></td>
+      </tr>
+      <tr>
+        <td><span class="seq-num s2">2</span></td>
+        <td>
+          <div class="flow-title">Monologue</div>
+          <div class="flow-sub">Bilder beschreiben + Quote + Opinion</div>
+        </td>
+        <td style="font-size:0.88rem; color:var(--muted)">Strukturiert sprechen, Meinung begründen, Bilder analysieren</td>
+        <td><span class="time-badge">~10 Min</span></td>
+      </tr>
+      <tr>
+        <td><span class="seq-num s3">3</span></td>
+        <td>
+          <div class="flow-title">Dialogue</div>
+          <div class="flow-sub">Aufgabe gemeinsam mit Lehrer lösen</div>
+        </td>
+        <td style="font-size:0.88rem; color:var(--muted)">Task-Phrases nutzen, Kompromisse finden, Partner einbeziehen</td>
+        <td><span class="time-badge">~10 Min</span></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="tip-box">
+    <strong>Goldene Regel:</strong> Niemals nur ja/nein. Immer: Antwort → Begründung → Beispiel aus deinem Leben. Der Prüfer will hören, dass du fließend sprechen <em>kannst</em> – nicht, dass du die perfekte Antwort kennst.
+  </div>
+</section>
+
+
+<!-- ========== WARM-UP ========== -->
+<section class="section" id="warmup">
+  <div class="section-label">Sequenz 1</div>
+  <div class="section-title">Warm-up Topics</div>
+  <div class="section-desc">Klick auf einen Topic → sieh dir die Fragen an → klick „Beispielantwort zeigen" und lerne, wie eine gute Antwort klingt.</div>
+
+  <!-- MOVIES -->
+  <div class="accordion" onclick="toggleAccordion(this)">
+    <div class="accordion-header">
+      🎬 Movies <span class="arrow">▼</span>
+    </div>
+    <div class="accordion-body">
+      <ul class="questions-list">
+        <li>What kind of movies do you like? Why?</li>
+        <li>What do you use to watch movies?</li>
+        <li>Would you rather watch a movie at home or in a movie theatre?</li>
+      </ul>
+      <button class="reveal-btn" onclick="toggleReveal(this, event)">👁 Beispielantwort zeigen</button>
+      <div class="reveal-content">
+        "<span class="highlight">To be honest,</span> I'm really into action and thriller movies – <span class="highlight">mainly because</span> they keep me on the edge of my seat the whole time. <span class="highlight">As for</span> where I watch them, I mostly use Netflix or YouTube. <span class="highlight">If I had to choose,</span> I'd say I prefer watching at home – you can pause whenever you want and it's just more relaxed. <span class="highlight">That said,</span> the cinema experience for big blockbusters is something else entirely."
+        <div class="note">Achte auf: Übergangswörter (To be honest, That said, As for), konkrete Begründungen, kein abruptes Ende.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRAVEL -->
+  <div class="accordion" onclick="toggleAccordion(this)">
+    <div class="accordion-header">
+      ✈️ Travel <span class="arrow">▼</span>
+    </div>
+    <div class="accordion-body">
+      <ul class="questions-list">
+        <li>Do you like travelling? Why? Why not?</li>
+        <li>Where have you been so far?</li>
+        <li>Where would you like to travel to if you had the choice?</li>
+      </ul>
+      <button class="reveal-btn" onclick="toggleReveal(this, event)">👁 Beispielantwort zeigen</button>
+      <div class="reveal-content">
+        "<span class="highlight">Personally, I do enjoy travelling,</span> although I haven't had the chance to go to many places yet. So far I've been to [Austria/Italy/...]. <span class="highlight">What I find fascinating about</span> travelling is that you get to experience completely different cultures and ways of life. <span class="highlight">If I had the choice,</span> I'd love to visit Japan – <span class="highlight">mainly because</span> the mix of modern technology and traditional culture seems absolutely unique."
+        <div class="note">Hypothetische Frage (if I had the choice) immer mit Conditional II: „I would love to..."</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MONEY -->
+  <div class="accordion" onclick="toggleAccordion(this)">
+    <div class="accordion-header">
+      💰 Money <span class="arrow">▼</span>
+    </div>
+    <div class="accordion-body">
+      <ul class="questions-list">
+        <li>Where does your money come from?</li>
+        <li>What do you spend money on?</li>
+        <li>What would you do if you won the lottery?</li>
+      </ul>
+      <button class="reveal-btn" onclick="toggleReveal(this, event)">👁 Beispielantwort zeigen</button>
+      <div class="reveal-content">
+        "<span class="highlight">Well,</span> most of my money comes from my apprenticeship salary. <span class="highlight">In terms of</span> what I spend it on – mostly things like going out with friends, gaming, and occasionally clothes. <span class="highlight">As for</span> the lottery question – <span class="highlight">I firmly believe</span> the smartest move would be to invest a big part of it. <span class="highlight">But honestly,</span> I wouldn't say no to travelling the world for a while either."
+        <div class="note">„In terms of..." und „As for..." sind starke Übergänge, die zeigen, dass du Struktur gibst.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPORT -->
+  <div class="accordion" onclick="toggleAccordion(this)">
+    <div class="accordion-header">
+      ⚽ Sport <span class="arrow">▼</span>
+    </div>
+    <div class="accordion-body">
+      <ul class="questions-list">
+        <li>Do you do any sport? Tell us about it.</li>
+        <li>What kind of sport are you interested in watching?</li>
+        <li>Do you think that sport is good for a healthy life? Why?</li>
+      </ul>
+      <button class="reveal-btn" onclick="toggleReveal(this, event)">👁 Beispielantwort zeigen</button>
+      <div class="reveal-content">
+        "<span class="highlight">I do [play football / go to the gym] quite regularly.</span> <span class="highlight">What I particularly enjoy about it</span> is that it's a great way to switch off after work or school. <span class="highlight">When it comes to</span> watching sport, I'm a big fan of [football / Formula 1]. <span class="highlight">And yes, I'm convinced that</span> sport plays a huge role in a healthy lifestyle – not just physically, but mentally too. <span class="highlight">There's no doubt that</span> regular exercise reduces stress significantly."
+        <div class="note">„There's no doubt that..." und „I'm convinced that..." klingen viel stärker als simples „I think".</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOBILE -->
+  <div class="accordion" onclick="toggleAccordion(this)">
+    <div class="accordion-header">
+      📱 Mobile Phones <span class="arrow">▼</span>
+    </div>
+    <div class="accordion-body">
+      <ul class="questions-list">
+        <li>What part does your mobile phone play in your life?</li>
+        <li>What do you think about banning phones at school?</li>
+        <li>If you had a child, how old should it be to have a mobile phone?</li>
+      </ul>
+      <button class="reveal-btn" onclick="toggleReveal(this, event)">👁 Beispielantwort zeigen</button>
+      <div class="reveal-content">
+        "<span class="highlight">Honestly,</span> my phone is pretty central to my daily life – I use it for communication, music, navigation, pretty much everything. <span class="highlight">As far as banning phones at school goes,</span> I can see both sides. <span class="highlight">On the one hand,</span> phones can be a massive distraction. <span class="highlight">On the other hand,</span> they're also incredibly useful tools for research. <span class="highlight">Personally, I'm of the opinion that</span> it depends on how it's managed – a complete ban seems too extreme."
+        <div class="note">„On the one hand... on the other hand..." – perfekte Struktur für Diskussionsfragen.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WORK -->
+  <div class="accordion" onclick="toggleAccordion(this)">
+    <div class="accordion-header">
+      🔧 Work <span class="arrow">▼</span>
+    </div>
+    <div class="accordion-body">
+      <ul class="questions-list">
+        <li>What kind of work would you like to do in future?</li>
+        <li>Can you imagine working abroad for some time?</li>
+        <li>What do you think about working from home?</li>
+      </ul>
+      <button class="reveal-btn" onclick="toggleReveal(this, event)">👁 Beispielantwort zeigen</button>
+      <div class="reveal-content">
+        "<span class="highlight">Well,</span> I'm currently doing my apprenticeship as an electrician, and <span class="highlight">I can definitely imagine</span> specializing further in that field – maybe in renewable energy or smart home technology. <span class="highlight">Working abroad is something I'd genuinely consider –</span> <span class="highlight">mainly because</span> gaining international experience seems incredibly valuable these days. <span class="highlight">As for</span> working from home – <span class="highlight">I think there's a lot to be said for</span> the flexibility it offers, but personally I think a mix of both works best."
+        <div class="note">Dein Beruf (electrician) macht deine Antwort konkret und glaubwürdig – nutze das!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAMILY -->
+  <div class="accordion" onclick="toggleAccordion(this)">
+    <div class="accordion-header">
+      👥 Family &amp; Friends <span class="arrow">▼</span>
+    </div>
+    <div class="accordion-body">
+      <ul class="questions-list">
+        <li>What do you do in your free time?</li>
+        <li>How much time do you spend with your family? And with your friends?</li>
+        <li>What kind of activities do you do with your friends?</li>
+      </ul>
+      <button class="reveal-btn" onclick="toggleReveal(this, event)">👁 Beispielantwort zeigen</button>
+      <div class="reveal-content">
+        "<span class="highlight">In my free time,</span> I mainly [game / hang out with friends / do sport]. <span class="highlight">When it comes to</span> family – I'd say we're pretty close. We usually have dinner together on weekends and sometimes go on day trips. <span class="highlight">With my friends,</span> we mostly [play football / go to the cinema / just hang out]. <span class="highlight">I think</span> that balance between family time and time with friends is really important."
+        <div class="note">Konkret werden: Nenn echte Aktivitäten. Das klingt authentisch, nicht auswendig gelernt.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOD -->
+  <div class="accordion" onclick="toggleAccordion(this)">
+    <div class="accordion-header">
+      🍕 Food <span class="arrow">▼</span>
+    </div>
+    <div class="accordion-body">
+      <ul class="questions-list">
+        <li>What kind of food do you like/not like?</li>
+        <li>What do you consider healthy eating?</li>
+        <li>What kind of restaurants do you like?</li>
+      </ul>
+      <button class="reveal-btn" onclick="toggleReveal(this, event)">👁 Beispielantwort zeigen</button>
+      <div class="reveal-content">
+        "<span class="highlight">I'm a big fan of</span> Italian food – pasta and pizza especially. <span class="highlight">What I'm not so keen on</span> is anything too spicy or sour. <span class="highlight">As for healthy eating –</span> <span class="highlight">I'd say</span> it's really about balance. You don't need to cut out everything you enjoy, but being mindful of what you eat regularly makes a big difference. <span class="highlight">Restaurant-wise,</span> I enjoy [Italian / Asian / burger places] – places where the atmosphere is relaxed and the portions are decent."
+        <div class="note">„What I'm not so keen on..." klingt natürlicher als „I don't like..."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========== MONOLOGUE ========== -->
+<section class="section" id="monologue">
+  <div class="section-label">Sequenz 2</div>
+  <div class="section-title">Monologue</div>
+  <div class="section-desc">Die Kunst: Struktur geben, eigene Meinung stark formulieren, Bilder interpretieren (nicht nur beschreiben).</div>
+
+  <div class="card">
+    <div class="card-title">Quote analysieren – Struktur</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="label">Paraphrase</div>
+          <div class="sub">Sag mit anderen Worten, was das Zitat bedeutet</div>
+          <div class="phrase">"What this quote basically means is..." &nbsp;/&nbsp; "In other words, the author suggests that..."</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="label">Eigene Meinung – stark formulieren</div>
+          <div class="sub">Nicht: "I think". Besser:</div>
+          <div class="phrase">"I firmly believe that..." &nbsp;/&nbsp; "I'm convinced that..." &nbsp;/&nbsp; "There cannot be any doubt that..." &nbsp;/&nbsp; "Personally, I hold the view that..."</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="label">Begründung + Beispiel</div>
+          <div class="sub">Belege deine Meinung</div>
+          <div class="phrase">"Let me illustrate this with an example..." &nbsp;/&nbsp; "This becomes clear when you consider..." &nbsp;/&nbsp; "For instance, in my own experience..."</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="label">Gegenposition ansprechen (optional, aber stark)</div>
+          <div class="phrase">"Of course, one could argue that... however..." &nbsp;/&nbsp; "Some people might say... but in my view..."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Meinung ausdrücken – Phrase-Upgrade</div>
+    <div class="phrase-grid">
+      <div class="phrase-card green">
+        <div class="phrase-label">Schwach → Stark</div>
+        <em>"I think..."</em> → <em>"I firmly believe that..."</em>
+      </div>
+      <div class="phrase-card green">
+        <div class="phrase-label">Schwach → Stark</div>
+        <em>"I don't agree..."</em> → <em>"I hold the view that... and I'm not alone in this."</em>
+      </div>
+      <div class="phrase-card yellow">
+        <div class="phrase-label">Kommentieren</div>
+        <em>"It may sound obvious, but..."</em><br>
+        <em>"It is a truth universally acknowledged that..."</em>
+      </div>
+      <div class="phrase-card yellow">
+        <div class="phrase-label">Erklären</div>
+        <em>"Let me be really clear about this:"</em><br>
+        <em>"What I mean by that is..."</em>
+      </div>
+      <div class="phrase-card purple">
+        <div class="phrase-label">Struktur</div>
+        <em>"First(ly)... Second(ly)... And finally..."</em><br>
+        <em>"There are a number of reasons, for example..."</em>
+      </div>
+      <div class="phrase-card purple">
+        <div class="phrase-label">Abschluss</div>
+        <em>"So, to wrap things up..."</em><br>
+        <em>"All things considered, I would say..."</em>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Monologue starten – fertige Sätze</div>
+    <div class="phrase-grid">
+      <div class="phrase-card">
+        <div class="phrase-label">Start</div>
+        <em>"Hello and welcome to my talk about... My task is to..."</em>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-label">Struktur ankündigen</div>
+        <em>"I have structured my talk as follows: First I'll... Then I'll... And finally..."</em>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-label">Weiterleiten</div>
+        <em>"Now I'd like to draw your attention to..."</em><br>
+        <em>"Let me move on to my next point."</em>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-label">Auf Bild referenzieren</div>
+        <em>"Picture [X] has a clear message: it shows that..."</em><br>
+        <em>"The quotation given refers to the fact that..."</em>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========== DIALOGUE ========== -->
+<section class="section" id="dialogue">
+  <div class="section-label">Sequenz 3</div>
+  <div class="section-title">Dialogue Phrases</div>
+  <div class="section-desc">Diese Phrasen musst du flüssig abrufen können – sie zeigen, dass du die Aufgabe wirklich managen kannst.</div>
+
+  <div class="card">
+    <div class="card-title">Task-Linked Vocabulary – alle Kategorien</div>
+    <div class="phrase-grid">
+      <div class="phrase-card green">
+        <div class="phrase-label">Starten / Aufgabe klären</div>
+        <em>"Now, let's see what we have to do."</em><br>
+        <em>"What would you suggest – how do we go about this?"</em><br>
+        <em>"Let's look at the steps we have to take."</em>
+      </div>
+      <div class="phrase-card green">
+        <div class="phrase-label">Zustimmen</div>
+        <em>"That sounds good to me."</em><br>
+        <em>"Fine by me."</em><br>
+        <em>"You've hit the nail on the head."</em><br>
+        <em>"I couldn't agree more."</em>
+      </div>
+      <div class="phrase-card red">
+        <div class="phrase-label">Höflich ablehnen</div>
+        <em>"I'm not really sure whether this would be helpful."</em><br>
+        <em>"I see your point, however..."</em><br>
+        <em>"I'm not really sure whether this makes any sense."</em>
+      </div>
+      <div class="phrase-card red">
+        <div class="phrase-label">Off-topic / Sackgasse</div>
+        <em>"I think we're wandering off topic at the moment."</em><br>
+        <em>"I think we're going round in circles. That won't get us anywhere."</em><br>
+        <em>"Is this really a part of what we have to do?"</em>
+      </div>
+      <div class="phrase-card yellow">
+        <div class="phrase-label">Weitermachen</div>
+        <em>"Right. Would you agree that we've completed this phase?"</em><br>
+        <em>"Let's see what's next."</em><br>
+        <em>"Shall we move on to [...], then?"</em><br>
+        <em>"Where do we go from here?"</em>
+      </div>
+      <div class="phrase-card yellow">
+        <div class="phrase-label">Kompromiss finden</div>
+        <em>"Maybe we can agree that..."</em><br>
+        <em>"On the one hand... on the other hand..."</em><br>
+        <em>"Of course, you are right in saying that... but..."</em><br>
+        <em>"There is some common ground: we both agree..."</em>
+      </div>
+      <div class="phrase-card purple">
+        <div class="phrase-label">Partner einbeziehen</div>
+        <em>"What do you think about...?"</em><br>
+        <em>"Could you go along with that?"</em><br>
+        <em>"Is there anything you could add to this?"</em>
+      </div>
+      <div class="phrase-card purple">
+        <div class="phrase-label">Zeit kaufen</div>
+        <em>"That's an interesting question. Let me think for a moment..."</em><br>
+        <em>"Let me make this crystal clear."</em><br>
+        <em>"Now look here. Let me explain."</em>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Häufige Fehler &amp; wie du sie vermeidest</div>
+    <table class="mistake-table">
+      <tr><th>Fehler</th><th>Was du stattdessen sagst</th></tr>
+      <tr>
+        <td class="bad">Lehrer alles reden lassen</td>
+        <td class="good">"What's your take on this?" / "Is there anything you could add?"</td>
+      </tr>
+      <tr>
+        <td class="bad">Thema verlassen</td>
+        <td class="good">"I think we're wandering off topic at the moment."</td>
+      </tr>
+      <tr>
+        <td class="bad">Schweigen / einfrieren</td>
+        <td class="good">"Let me think for a moment..." → dann Thema wechseln</td>
+      </tr>
+      <tr>
+        <td class="bad">Argument endlos wiederholen</td>
+        <td class="good">"I think we're going round in circles. Let's move on."</td>
+      </tr>
+      <tr>
+        <td class="bad">Diskussion „gewinnen" wollen</td>
+        <td class="good">Kompromisse suchen – das ist ein Bewertungskriterium!</td>
+      </tr>
+      <tr>
+        <td class="bad">Passiv sein, nur reagieren</td>
+        <td class="good">Selbst Ideen einbringen, Phasen aktiv abschließen</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+
+<!-- ========== MOCK TASKS ========== -->
+<section class="section" id="mocks">
+  <div class="section-label">Prüfungsbeispiele</div>
+  <div class="section-title">Mock Tasks</div>
+  <div class="section-desc">Klick auf „Beispielantwort zeigen" – lerne, wie gute Antworten klingen und welche Phrasen darin stecken.</div>
+
+  <!-- CAFFEINE -->
+  <div class="mock-card">
+    <div class="mock-header">Aufgabe 1 · Caffeine (Einzel)</div>
+    <div class="mock-body">
+
+      <div class="mock-section">
+        <div class="mock-label">Quotes in der Aufgabe</div>
+        <div class="quote-box">"Energy? What energy? Ha ha, the only energy I know is energy drinks. I'm totally like everyone else."</div>
+        <button class="reveal-btn" onclick="toggleReveal(this, event)" style="margin-top:10px">👁 Beispiel Quote-Erklärung zeigen</button>
+        <div class="example-answer">
+          "<span class="phrase">What this quote basically means is</span> that the speaker is completely dependent on energy drinks – to the point where they don't even know what natural energy feels like. <span class="phrase">I'm convinced that</span> this reflects a very common problem in our generation: we rely on artificial stimulants instead of dealing with the root cause, which is often poor sleep or an unhealthy lifestyle. <span class="phrase">Let me illustrate this with an example:</span> many students drink two or three energy drinks a day during exam season and then wonder why they can't sleep at night. <span class="phrase">Of course, one could argue that</span> energy drinks are harmless in moderation – <span class="phrase">however,</span> the quote suggests there's nothing moderate about this person's consumption."
+          <div class="note">Struktur: Paraphrase → Meinung (stark) → Beispiel → Gegenargument angesprochen</div>
+        </div>
+      </div>
+
+      <div class="mock-section">
+        <div class="mock-label">Dialogue Task</div>
+        <p style="font-size:0.9rem; color:var(--muted)">You and your partner have decided to limit caffeine. Collect alternatives to keep fit and awake.</p>
+        <div class="ideas-list">
+          <span class="idea-tag">herbal tea</span>
+          <span class="idea-tag">green tea</span>
+          <span class="idea-tag">cold water</span>
+          <span class="idea-tag">smoothies</span>
+          <span class="idea-tag">short walk</span>
+          <span class="idea-tag">power nap (20 min)</span>
+          <span class="idea-tag">fresh air</span>
+          <span class="idea-tag">stretching</span>
+          <span class="idea-tag">oats / nuts</span>
+          <span class="idea-tag">better sleep routine</span>
+        </div>
+        <button class="reveal-btn" onclick="toggleReveal(this, event)" style="margin-top:12px">👁 Beispiel-Dialogue zeigen</button>
+        <div class="example-answer">
+          <strong>Du:</strong> "<span class="phrase">Now, let's see what we have to do.</span> We need to collect alternatives to caffeine that keep us awake. <span class="phrase">What would you suggest – how do we go about this?"</span><br><br>
+          <strong>Lehrer:</strong> "Maybe we start with drinks?"<br><br>
+          <strong>Du:</strong> "<span class="phrase">That sounds good to me.</span> Herbal tea and green tea are obvious alternatives – they're much gentler on the body. Cold water also helps a lot, actually. <span class="phrase">What do you think about</span> smoothies? They give you natural energy through the sugar in fruit."<br><br>
+          <strong>Lehrer:</strong> "Good point. What about activities?"<br><br>
+          <strong>Du:</strong> "Absolutely. <span class="phrase">I firmly believe that</span> a short 10-minute walk does more for your focus than any energy drink. <span class="phrase">There's no doubt that</span> getting fresh air resets your concentration. A power nap of 20 minutes is also scientifically proven to boost alertness. <span class="phrase">Shall we move on to food, then?"</span>
+          <div class="note">Grün markierte Phrasen = Task-Vocabulary. Ziel: mindestens 4-5 davon natürlich einbauen.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPORTS A -->
+  <div class="mock-card">
+    <div class="mock-header">Aufgabe 2 · Sports Tandem A – Football</div>
+    <div class="mock-body">
+      <div class="mock-section">
+        <div class="mock-label">Quote</div>
+        <div class="quote-box">"We are not a team because we work together. We are a team because we respect, trust and care for each other."</div>
+        <button class="reveal-btn" onclick="toggleReveal(this, event)" style="margin-top:10px">👁 Beispiel Quote-Erklärung zeigen</button>
+        <div class="example-answer">
+          "<span class="phrase">What this quote basically means is</span> that true teamwork goes far beyond simply doing a job together – it's built on mutual respect, trust and genuine care for one another. <span class="phrase">I hold the view that</span> this is one of the most important lessons sport can teach us. <span class="phrase">There cannot be any doubt that</span> a group of highly talented individuals will fail without trust, while a team of average players with strong bonds can achieve remarkable things. <span class="phrase">Let me give you an example:</span> look at Leicester City winning the Premier League in 2016 – nobody gave them a chance, but their team spirit was extraordinary."
+          <div class="note">Konkretes Beispiel macht die Antwort unvergesslich. Nutze ein echtes Beispiel aus deinem Leben oder Allgemeinwissen.</div>
+        </div>
+      </div>
+      <div class="mock-section">
+        <div class="mock-label">Dialogue Task</div>
+        <p style="font-size:0.9rem; color:var(--muted)">You've decided to do more team sports. Discuss how + what diet could support your plan.</p>
+        <div class="ideas-list">
+          <span class="idea-tag">join a football club</span>
+          <span class="idea-tag">volleyball / basketball</span>
+          <span class="idea-tag">weekly schedule</span>
+          <span class="idea-tag">gym with a friend</span>
+          <span class="idea-tag">more protein</span>
+          <span class="idea-tag">less sugar</span>
+          <span class="idea-tag">meal prep</span>
+          <span class="idea-tag">hydration</span>
+          <span class="idea-tag">avoid processed food</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPORTS B -->
+  <div class="mock-card">
+    <div class="mock-header">Aufgabe 3 · Sports Tandem B – Volleyball</div>
+    <div class="mock-body">
+      <div class="mock-section">
+        <div class="mock-label">Quote</div>
+        <div class="quote-box">"Sports do not build character, they reveal it."</div>
+        <button class="reveal-btn" onclick="toggleReveal(this, event)" style="margin-top:10px">👁 Beispiel Quote-Erklärung zeigen</button>
+        <div class="example-answer">
+          "<span class="phrase">What the author is essentially saying is</span> that sport doesn't change who you are – it simply shows who you already are. Under pressure, your true character becomes visible. <span class="phrase">Personally, I hold the view that</span> this is absolutely true. <span class="phrase">Think about it:</span> when someone loses a game, do they shake hands gracefully or make excuses? That tells you everything. <span class="phrase">I'm convinced that</span> sport is one of the best environments to observe human character – how people handle failure, pressure, and success says far more than anything else."
+          <div class="note">„Think about it:" ist ein starker rhetorischer Einstieg – weckt Aufmerksamkeit beim Prüfer.</div>
+        </div>
+      </div>
+      <div class="mock-section">
+        <div class="mock-label">Dialogue Task</div>
+        <p style="font-size:0.9rem; color:var(--muted)">Same as Tandem A – more team sports + diet plan.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRAVELLING -->
+  <div class="mock-card">
+    <div class="mock-header">Aufgabe 4 · Travelling (Einzel)</div>
+    <div class="mock-body">
+      <div class="mock-section">
+        <div class="mock-label">Quote</div>
+        <div class="quote-box">"Travel is the only thing you can buy that makes you richer."</div>
+        <button class="reveal-btn" onclick="toggleReveal(this, event)" style="margin-top:10px">👁 Beispiel Quote-Erklärung zeigen</button>
+        <div class="example-answer">
+          "<span class="phrase">What this quote basically means is</span> that unlike material possessions, travel enriches you in ways that money alone cannot – through experiences, perspectives and memories that stay with you forever. <span class="phrase">I firmly believe that</span> this is true, <span class="phrase">although</span> I'd add one nuance: you don't necessarily need to spend a lot of money to gain this richness. <span class="phrase">For instance,</span> a weekend trip to a different city or region can open your eyes just as much as an expensive flight abroad. <span class="phrase">There's no doubt that</span> experiencing different cultures fundamentally changes the way you see the world."
+          <div class="note">Nuance hinzufügen (‚although I'd add one nuance') zeigt kritisches Denken – das beeindruckt.</div>
+        </div>
+      </div>
+      <div class="mock-section">
+        <div class="mock-label">Dialogue Task</div>
+        <p style="font-size:0.9rem; color:var(--muted)">You and your partner plan a "Travelling on a Budget" day for your class.</p>
+        <div class="ideas-list">
+          <span class="idea-tag">country presentations</span>
+          <span class="idea-tag">typical food from each country</span>
+          <span class="idea-tag">travel quiz</span>
+          <span class="idea-tag">budget tips workshop</span>
+          <span class="idea-tag">cheap flights research</span>
+          <span class="idea-tag">hostel vs hotel comparison</span>
+          <span class="idea-tag">group tasks by region</span>
+          <span class="idea-tag">packing list challenge</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========== FLASHCARDS ========== -->
+<section class="section" id="flashcards">
+  <div class="section-label">Auswendig lernen</div>
+  <div class="section-title">Phrase Flashcards</div>
+  <div class="section-desc">Klick auf eine Karte → sie dreht sich um und zeigt die Phrase. Übe bis du alle kennst.</div>
+
+  <div class="flashcard-grid">
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Aufgabe starten<div class="fc-hint">tap to flip</div></div>
+        <div class="flashcard-back">"Now, let's see what we have to do."</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Partner fragen<div class="fc-hint">tap to flip</div></div>
+        <div class="flashcard-back">"What would you suggest – how do we go about this?"</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Höflich ablehnen<div class="fc-hint">tap to flip</div></div>
+        <div class="flashcard-back">"I'm not really sure whether this would be helpful."</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Off-topic erkennen<div class="fc-hint">tap to flip</div></div>
+        <div class="flashcard-back">"I think we're wandering off topic at the moment."</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Im Kreis drehen<div class="fc-hint">tap to flip</div></div>
+        <div class="flashcard-back">"I think we're going round in circles. That won't get us anywhere."</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Weitergehen<div class="fc-hint">tap to flip</div></div>
+        <div class="flashcard-back">"Shall we move on to [...], then?"</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Phase abschließen<div class="fc-hint">tap to flip</div></div>
+        <div class="flashcard-back">"Right. Would you agree that we've completed this phase?"</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Kompromiss<div class="fc-hint">tap to flip</div></div>
+        <div class="flashcard-back">"Maybe we can agree that..." / "There is some common ground: we both agree..."</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Starke Meinung<div class="fc-hint">tap to flip</div></div>
+        <div class="flashcard-back">"I firmly believe that..." / "I'm convinced that..." / "There cannot be any doubt that..."</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Quote paraphrasieren<div class="fc-hint">tap to flip</div></div>
+        <div class="flashcard-back">"What this quote basically means is..." / "In other words, the author suggests that..."</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Zeit kaufen<div class="fc-hint">tap to flip</div></div>
+        <div class="flashcard-back">"That's an interesting question. Let me think for a moment..."</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Beide Seiten<div class="fc-hint">tap to flip</div></div>
+        <div class="flashcard-back">"On the one hand... on the other hand..."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========== PLAN ========== -->
+<section class="section" id="plan">
+  <div class="section-label">Vorbereitung</div>
+  <div class="section-title">2-Stunden Lernplan</div>
+  <div class="section-desc">Laut sprechen beim Üben – nicht nur lesen. Das ist der entscheidende Unterschied.</div>
+
+  <div class="card">
+    <div class="plan-row">
+      <div class="plan-time">0:00–0:20</div>
+      <div class="plan-content">
+        <div class="plan-title">Warm-up Topics durchgehen</div>
+        <div class="plan-desc">Alle 7 Accordions aufmachen, Fragen lesen, Beispielantwort laut sprechen. Timer: 2 Min pro Topic.</div>
+      </div>
+    </div>
+    <div class="plan-row">
+      <div class="plan-time">0:20–0:40</div>
+      <div class="plan-content">
+        <div class="plan-title">Quotes erklären üben</div>
+        <div class="plan-desc">Alle 4 Quotes: erst selbst versuchen (laut!), dann Beispielantwort vergleichen. Welche Phrasen hast du vergessen?</div>
+      </div>
+    </div>
+    <div class="plan-row">
+      <div class="plan-time">0:40–1:00</div>
+      <div class="plan-content">
+        <div class="plan-title">Dialogue Phrases auswendig</div>
+        <div class="plan-desc">Flashcards durchgehen bis alle Rückseiten sitzen. Dann Dialogue-Beispiel laut vorlesen.</div>
+      </div>
+    </div>
+    <div class="plan-row">
+      <div class="plan-time">1:00–1:30</div>
+      <div class="plan-content">
+        <div class="plan-title">Komplette Mock-Prüfung</div>
+        <div class="plan-desc">Eine Aufgabe komplett simulieren: Warm-up → Monologue → Dialogue. Stoppuhr laufen lassen.</div>
+      </div>
+    </div>
+    <div class="plan-row">
+      <div class="plan-time">1:30–2:00</div>
+      <div class="plan-content">
+        <div class="plan-title">Schwachstellen wiederholen</div>
+        <div class="plan-desc">Was war holprig? Genau diese Sections nochmal. Dann Notfall-Phrases laut aufsagen.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Checkliste – was kannst du schon?</div>
+    <ul class="checklist" id="checklist">
+      <li onclick="toggleCheck(this)"><span class="cb">✓</span> Alle 7 Warm-up Topics: fließende Antworten</li>
+      <li onclick="toggleCheck(this)"><span class="cb">✓</span> Quote analysieren: Paraphrase → Meinung → Beispiel</li>
+      <li onclick="toggleCheck(this)"><span class="cb">✓</span> Starke Meinungsphrasen (I firmly believe... / I'm convinced...)</li>
+      <li onclick="toggleCheck(this)"><span class="cb">✓</span> Dialogue: Aufgabe starten können</li>
+      <li onclick="toggleCheck(this)"><span class="cb">✓</span> Dialogue: Höflich ablehnen / Partner einbeziehen</li>
+      <li onclick="toggleCheck(this)"><span class="cb">✓</span> Dialogue: Off-topic erkennen und umleiten</li>
+      <li onclick="toggleCheck(this)"><span class="cb">✓</span> Kompromiss-Phrasen sitzen</li>
+      <li onclick="toggleCheck(this)"><span class="cb">✓</span> Notfall-Phrasen wenn ich einfriere</li>
+      <li onclick="toggleCheck(this)"><span class="cb">✓</span> Alle Flashcards ohne Nachdenken</li>
+      <li onclick="toggleCheck(this)"><span class="cb">✓</span> Eine komplette Mock-Prüfung durchgespielt</li>
+    </ul>
+    <div style="margin-top: 14px;">
+      <div style="font-size:0.8rem; color:var(--muted); margin-bottom:4px">Fortschritt: <span id="progress-text">0/10</span></div>
+      <div class="progress-wrap"><div class="progress-bar" id="progress-bar" style="width:0%"></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Notfall-Kit – wenn du einfrierst</div>
+    <div class="phrase-grid">
+      <div class="phrase-card yellow">
+        <div class="phrase-label">Zeit kaufen</div>
+        <em>"That's an interesting question. Let me think for a moment..."</em>
+      </div>
+      <div class="phrase-card yellow">
+        <div class="phrase-label">Frage nochmal</div>
+        <em>"Could you repeat the question, please?"</em>
+      </div>
+      <div class="phrase-card yellow">
+        <div class="phrase-label">Umformulieren</div>
+        <em>"What I'm trying to say is..."</em><br>
+        <em>"Let me put it another way..."</em>
+      </div>
+      <div class="phrase-card yellow">
+        <div class="phrase-label">Unterbrechen</div>
+        <em>"Sorry, I haven't finished yet."</em><br>
+        <em>"Hear me out, please."</em>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /page -->
+
+<footer>
+  GSS Leutkirch · Kommunikationsprüfung Englisch · 2BFS Profil Elektro<br>
+  <span style="color:var(--accent)">Viel Erfolg!</span>
+</footer>
+
+<script>
+  function toggleAccordion(el) {
+    el.classList.toggle('open');
+  }
+
+  function toggleReveal(btn, e) {
+    e.stopPropagation();
+    const content = btn.nextElementSibling;
+    const isVisible = content.classList.contains('visible');
+    content.classList.toggle('visible');
+    btn.textContent = isVisible ? '👁 Beispielantwort zeigen' : '🙈 Verstecken';
+  }
+
+  function toggleCheck(li) {
+    li.classList.toggle('checked');
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const items = document.querySelectorAll('#checklist li');
+    const checked = document.querySelectorAll('#checklist li.checked').length;
+    const pct = Math.round((checked / items.length) * 100);
+    document.getElementById('progress-bar').style.width = pct + '%';
+    document.getElementById('progress-text').textContent = checked + '/' + items.length;
+  }
+</script>
+
+</body>
+</html>
